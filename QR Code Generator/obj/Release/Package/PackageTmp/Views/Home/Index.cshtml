@@ -1,0 +1,31 @@
+﻿@model QR_Code_Generator.Models.Codes
+
+@{
+    ViewBag.Title = "QR Code Creator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        QR Code Generator
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Detail", "Home"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="form-group">
+                <label for="url" class="control-label">Enter Web Address</label>
+                <br />
+                @Html.ValidationMessageFor(model => model.Url)
+                @Html.TextBoxFor(model => model.Url,  new { @class = "form-control" })
+                <br/>
+                <p>
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </p>
+            </div>
+        }
+    </div>
+</div>
+

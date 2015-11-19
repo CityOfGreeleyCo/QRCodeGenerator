@@ -1,0 +1,33 @@
+﻿@using QR_Code_Generator.Controllers
+@model QR_Code_Generator.Models.Codes
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        QR Code
+    </div>
+    <div class="panel-body">
+        @Html.GenerateQrCode(@Model.Url)
+        <br/>
+        <br/>
+        <div id="download"><button type="button" onclick="location.href = '@Url.Action("Index")'" class="btn btn-primary">
+    Start Over
+</button>  </div>
+
+       
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        var href = $("#qrcode").attr('src');
+        var a = "<a href='" + href + "' download='qrcode.png' class='btn btn-primary'>Download Code</a>  ";
+        $("#download").prepend(a);
+    });
+    
+
+</script>
+
+
